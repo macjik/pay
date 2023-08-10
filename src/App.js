@@ -1,29 +1,40 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import {
+  createHashRouter,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+import RootLayout from "./Components/RootLayout";
+import ErrorPage from "./Components/ErrorPage";
+import Form from "./Components/Form";
+import SuccessPage from "./Components/SuccessPage";
 
 const telegramBot = window.Telegram.WebApp;
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout></RootLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "",
+        element: <Form />,
+      },
+      { path: "success", element: <SuccessPage></SuccessPage> },
+    ],
+  },
+]);
+
 function App() {
   useEffect(() => {
     telegramBot.ready();
   }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <RouterProvider router={router}></RouterProvider>;
+    </React.Fragment>
   );
 }
 
