@@ -11,7 +11,7 @@ import Form from "./Components/Form";
 import SuccessPage from "./Components/SuccessPage";
 
 const telegramBot = window.Telegram.WebApp;
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
@@ -21,7 +21,7 @@ const router = createHashRouter([
         path: "",
         element: <Form />,
       },
-      { path: "success", element: <SuccessPage></SuccessPage> },
+      { path: "/success", element: <SuccessPage></SuccessPage> },
     ],
   },
 ]);
