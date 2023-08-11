@@ -11,7 +11,7 @@ import Form from "./Components/Form";
 import SuccessPage from "./Components/SuccessPage";
 
 const telegramBot = window.Telegram.WebApp;
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
