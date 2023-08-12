@@ -4,7 +4,8 @@ import { TextField } from "@mui/material";
 import classes from "./Style/Form.module.css";
 import InputMask from "react-input-mask";
 import axios from "axios";
-import CloudPayments from 'https://widget.cloudpayments.ru/bundles/paymentblocks.js'
+import 'https://widget.cloudpayments.uz/bundles/paymentblocks.js'
+// import CloudPayments from 'cloudpayments'
 
 const Form = () => {
   const [owner, setName] = useState("");
@@ -23,9 +24,9 @@ const Form = () => {
     setName(e.target.value);
   };
 
-  const cp = new CloudPayments();
-  cp.publicKey = "pk_27a0fa56dbdd6c3825efe5664f40d";
-  cp.apiUrl = "https://api.cloudpayments.uz/";
+  // const cp = new CloudPayments();
+  // cp.publicKey = "pk_27a0fa56dbdd6c3825efe5664f40d";
+  // cp.apiUrl = "https://api.cloudpayments.uz/";
 
   const paymentData = {
     Amount: 1000,
@@ -40,17 +41,17 @@ const Form = () => {
     e.preventDefault();
 
     console.log('click');
-    try {
-      const response = await cp.charge(paymentData);
+    // try {
+    //   const response = await cp.charge(paymentData);
 
-      if (response.Success) {
-        console.log("Payment successful:", response);
-      } else {
-        console.error("Payment failed:", response);
-      }
-    } catch (error) {
-      console.error("Payment error:", error);
-    }
+    //   if (response.Success) {
+    //     console.log("Payment successful:", response);
+    //   } else {
+    //     console.error("Payment failed:", response);
+    //   }
+    // } catch (error) {
+    //   console.error("Payment error:", error);
+    // }
   };
 
   // useEffect(() => {
