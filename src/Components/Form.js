@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, CircularProgress, Card } from "@mui/material";
 import { TextField } from "@mui/material";
 import classes from "./Style/Form.module.css";
 import InputMask from "react-input-mask";
 import axios from "axios";
+import CloudPayments from 'https://widget.cloudpayments.ru/bundles/paymentblocks.js'
 
 const Form = () => {
   const [owner, setName] = useState("");
@@ -22,37 +23,47 @@ const Form = () => {
     setName(e.target.value);
   };
 
-  const payment = {
-    amount: 100,
-    currency: "USD",
-    cardNumber: "4242424242424242",
-    cardExpDate: "12/23",
-    cardCVC: "123",
+  const cp = new CloudPayments();
+  cp.publicKey = "pk_27a0fa56dbdd6c3825efe5664f40d";
+  cp.apiUrl = "https://api.cloudpayments.uz/";
+
+  const paymentData = {
+    Amount: 1000,
+    Currency: "UZS",
+    Name: "John Doe",
+    CardCryptogramPacket: "ENCRYPTED_CARD_DATA",
+    InvoiceId: "123456789",
+    AccountId: "USER_ID",
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log('click');
     try {
-      const post = await axios.post(
-        `https://api.cloudpayments.uz/payments`,
-        {
-          payment,
-        },
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-            "Access-Control-Allow-Headers": "Content-Type",
-          },
-        }
-      );
-      console.log(post);
-    } catch (err) {
-      console.error("Failed to send the response");
+      const response = await cp.charge(paymentData);
+
+      if (response.Success) {
+        console.log("Payment successful:", response);
+      } else {
+        console.error("Payment failed:", response);
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
     }
-    console.log(payment);
   };
+
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "https://widget.cloudpayments.ru/bundles/paymentblocks.js";
+  //   script.sync = true;
+
+  //   document.body.append(script);
+
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <Card className={classes.card}>

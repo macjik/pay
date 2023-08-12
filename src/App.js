@@ -23,7 +23,7 @@ const router = createHashRouter([
       },
       { path: "success", element: <SuccessPage></SuccessPage> },
     ],
-  },
+  }, 
 ]);
 
 function App() {
