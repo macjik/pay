@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import classes from "./Style/Form.module.css";
 import InputMask from "react-input-mask";
 import axios from "axios";
-import 'https://widget.cloudpayments.uz/bundles/paymentblocks.js'
+// import 'https://widget.cloudpayments.uz/bundles/paymentblocks.js'
 // import CloudPayments from 'cloudpayments'
 
 const Form = () => {
