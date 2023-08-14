@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import classes from "./Style/Form.module.css";
 import InputMask from "react-input-mask";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 // import 'https://widget.cloudpayments.uz/bundles/paymentblocks.js'
 // import CloudPayments from 'cloudpayments'
 
@@ -24,7 +25,7 @@ const Form = () => {
     setName(e.target.value);
   };
 
-  // const cp = new CloudPayments();
+  // const cp = new window.CloudPayments();
   // cp.publicKey = "pk_27a0fa56dbdd6c3825efe5664f40d";
   // cp.apiUrl = "https://api.cloudpayments.uz/";
 
@@ -40,78 +41,147 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('click');
-    // try {
-    //   const response = await cp.charge(paymentData);
-
-    //   if (response.Success) {
-    //     console.log("Payment successful:", response);
-    //   } else {
-    //     console.error("Payment failed:", response);
-    //   }
-    // } catch (error) {
-    //   console.error("Payment error:", error);
-    // }
+    console.log("click");
   };
 
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src = "https://widget.cloudpayments.ru/bundles/paymentblocks.js";
-  //   script.sync = true;
+  useEffect(() => {
+    // const downloadScript = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       "https://widget.cloudpayments.ru/bundles/paymentblocks.js"
+    //     );
+    //     const script = document.createElement("script");
+    //     script.text = response.data;
+    //     document.head.appendChild(script);
+    //     script.onload = initializePaymentBlocks;
+    //   } catch (error) {
+    //     console.error("Error downloading script:", error);
+    //   }
+    // };
 
-  //   document.body.append(script);
+    let blocksApp = new window.cp.PaymentBlocks(
+      {
+        publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
+        description: "Тестовая оплата",
+        amount: 100,
+        currency: "UZS",
+        invoiceId: "123",
+        accountId: "123",
+        email: "",
+        requireEmail: false,
+        language: "ru-RU",
+      },
+      {
+        appearance: {
+          colors: {
+            primaryButtonColor: "#2E71FC",
+            primaryButtonTextColor: "#FFFFFF",
+            primaryHoverButtonColor: "#2E71FC",
+            primaryButtonHoverTextColor: "#FFFFFF",
+            activeInputColor: "#0B1E46",
+            inputBackground: "#FFFFFF",
+            inputColor: "#8C949F",
+            inputBorderColor: "#E2E8EF",
+            errorColor: "#EB5757",
+          },
+          borders: {
+            radius: "8px",
+          },
+        },
+        components: {
+          paymentButton: {
+            text: "Оплатить",
+            fontSize: "16px",
+          },
+          paymentForm: {
+            labelFontSize: "16px",
+            activeLabelFontSize: "12px",
+            fontSize: "16px",
+          },
+        },
+      }
+    );
 
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
+    blocksApp.mount(document.getElementById("element"));
+
+    blocksApp.on("destroy", () => {
+      console.log("destroy");
+    });
+    blocksApp.on("success", (result) => {
+      console.log("success", result);
+    });
+    blocksApp.on("fail", (result) => {
+      console.log("fail", result);
+    });
+  }, []);
+
+  useEffect(() => {
+    const testing = async () => {
+      try {
+        const test = await axios.post("https://api.cloudpayments.uz/test", {
+          headers: { "JSON Content-Type": "application/json" },
+          body: JSON.stringify({
+            paymentData,
+          }),
+        });
+        const response = await test.response;
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    testing();
+  }, []);
 
   return (
-    <Card className={classes.card}>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Card Number"
-          variant="outlined"
-          required
-          type="number"
-          onChange={handleCardNumber}
-          value={cardNumber}
-        ></TextField>
-        <InputMask
-          label="Card Expiry Date (MM/YY)"
-          variant="outlined"
-          required
-          type="text"
-          mask="99/99"
-          maskChar=""
-          value={expiryDate}
-          onChange={handleExpiryDate}
-        >
-          {(inputProps) => (
-            <TextField
-              label="Card Expiry Date (MM/YY)"
-              variant="outlined"
-              required
-              type="text"
-              inputProps={inputProps}
-            />
-          )}
-        </InputMask>
-        <TextField
-          label="Card Owner"
-          variant="outlined"
-          required
-          type="text"
-          onChange={handleCardUser}
-          value={owner}
-        ></TextField>
-        <div className={classes.buttons}>
-          <Button variant="contained" type="submit">
-            Pay
-          </Button>
-        </div>
-      </form>
-    </Card>
+    <>
+      <div id="element"></div>;
+      {/* <Card className={classes.card}>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Card Number"
+            variant="outlined"
+            required
+            type="number"
+            onChange={handleCardNumber}
+            value={cardNumber}
+          ></TextField>
+          <InputMask
+            label="Card Expiry Date (MM/YY)"
+            variant="outlined"
+            required
+            type="text"
+            mask="99/99"
+            maskChar=""
+            value={expiryDate}
+            onChange={handleExpiryDate}
+          >
+            {(inputProps) => (
+              <TextField
+                label="Card Expiry Date (MM/YY)"
+                variant="outlined"
+                required
+                type="text"
+                inputProps={inputProps}
+              />
+            )}
+          </InputMask>
+          <TextField
+            label="Card Owner"
+            variant="outlined"
+            required
+            type="text"
+            onChange={handleCardUser}
+            value={owner}
+          ></TextField>
+          <div className={classes.buttons}>
+            <Button variant="contained" type="submit">
+              Pay
+            </Button>
+          </div>
+        </form>
+      </Card> */}
+    </>
   );
 };
 
