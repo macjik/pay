@@ -138,12 +138,12 @@ const Form = () => {
         {
           //options
           publicId: "test_api_00000000000000000000002", //id из личного кабинета
-          description: "Оплата товаров в example.com", //назначение
+          description: "Оплата товаров в 2", //назначение
           amount: 100, //сумма
           currency: "RUB", //валюта
           accountId: "user@example.com", //идентификатор плательщика (необязательно)
           invoiceId: "1234567", //номер заказа  (необязательно)
-          email: "user@example.com", //email плательщика (необязательно)
+          // email: "user@example.com", //email плательщика (необязательно)
           skin: "mini", //дизайн виджета (необязательно)
           data: {
             myProp: "myProp value",
@@ -168,23 +168,23 @@ const Form = () => {
     pay();
   }, []);
 
-  useEffect(() => {
-    const testing = async () => {
-      try {
-        const test = await axios.post("https://api.cloudpayments.uz/test", {
-          headers: { "JSON Content-Type": "application/json" },
-          body: JSON.stringify({
-            paymentData,
-          }),
-        });
-        const response = await test.response;
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    testing();
-  });
+  // useEffect(() => {
+  //   const testing = async () => {
+  //     try {
+  //       const test = await axios.post("https://api.cloudpayments.uz/test", {
+  //         headers: { "JSON Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           paymentData,
+  //         }),
+  //       });
+  //       const response = await test.response;
+  //       console.log(response);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   testing();
+  // });
 
   return (
     <>
