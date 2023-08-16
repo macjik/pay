@@ -140,7 +140,7 @@ const Form = () => {
           publicId: "test_api_00000000000000000000002", //id из личного кабинета
           description: "Оплата товаров в 2", //назначение
           amount: 100, //сумма
-          currency: "RUB", //валюта
+          currency: "UZS", //валюта
           accountId: "user@example.com", //идентификатор плательщика (необязательно)
           invoiceId: "1234567", //номер заказа  (необязательно)
           // email: "user@example.com", //email плательщика (необязательно)
