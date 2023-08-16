@@ -42,6 +42,27 @@ const Form = () => {
     e.preventDefault();
 
     console.log("click");
+
+    // const checkout = new window.cp.Checkout({
+    //   publicId: "test_api_000000000000000002",
+    //   container: document.getElementById("paymentFormSample"),
+    // });
+
+    // const fieldValues = {
+    //   cvv: "911",
+    //   cardNumber: "4242 4242 4242 4242",
+    //   expDateMonth: "12",
+    //   expDateYear: "24",
+    // };
+
+    // checkout
+    //   .createPaymentCryptogram()
+    //   .then((cryptogram) => {
+    //     console.log(cryptogram); // криптограмма
+    //   })
+    //   .catch((errors) => {
+    //     console.log(errors);
+    //   });
   };
 
   useEffect(() => {
@@ -58,61 +79,93 @@ const Form = () => {
     //     console.error("Error downloading script:", error);
     //   }
     // };
-
-    let blocksApp = new window.cp.PaymentBlocks(
-      {
-        publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
-        description: "Тестовая оплата",
-        amount: 100,
-        currency: "UZS",
-        invoiceId: "123",
-        accountId: "123",
-        email: "",
-        requireEmail: false,
-        language: "ru-RU",
-      },
-      {
-        appearance: {
-          colors: {
-            primaryButtonColor: "#2E71FC",
-            primaryButtonTextColor: "#FFFFFF",
-            primaryHoverButtonColor: "#2E71FC",
-            primaryButtonHoverTextColor: "#FFFFFF",
-            activeInputColor: "#0B1E46",
-            inputBackground: "#FFFFFF",
-            inputColor: "#8C949F",
-            inputBorderColor: "#E2E8EF",
-            errorColor: "#EB5757",
-          },
-          borders: {
-            radius: "8px",
+    // let blocksApp = new window.cp.PaymentBlocks(
+    //   {
+    //     publicId: "test_api_000000000000000002",
+    //     description: "Тестовая оплата",
+    //     amount: 100,
+    //     currency: "UZS",
+    //     invoiceId: "123",
+    //     accountId: "123",
+    //     email: "",
+    //     requireEmail: false,
+    //     language: "ru-RU",
+    //   },
+    //   {
+    //     appearance: {
+    //       colors: {
+    //         primaryButtonColor: "#2E71FC",
+    //         primaryButtonTextColor: "#FFFFFF",
+    //         primaryHoverButtonColor: "#2E71FC",
+    //         primaryButtonHoverTextColor: "#FFFFFF",
+    //         activeInputColor: "#0B1E46",
+    //         inputBackground: "#FFFFFF",
+    //         inputColor: "#8C949F",
+    //         inputBorderColor: "#E2E8EF",
+    //         errorColor: "#EB5757",
+    //       },
+    //       borders: {
+    //         radius: "8px",
+    //       },
+    //     },
+    //     components: {
+    //       paymentButton: {
+    //         text: "Оплатить",
+    //         fontSize: "16px",
+    //       },
+    //       paymentForm: {
+    //         labelFontSize: "16px",
+    //         activeLabelFontSize: "12px",
+    //         fontSize: "16px",
+    //       },
+    //     },
+    //   }
+    // );
+    // blocksApp.mount(document.getElementById("element"));
+    // blocksApp.on("destroy", () => {
+    //   console.log("destroy");
+    // });
+    // blocksApp.on("success", (result) => {
+    //   console.log("success", result);
+    // });
+    // blocksApp.on("fail", (result) => {
+    //   console.log("fail", result);
+    // });
+    function pay() {
+      let widget = new window.cp.CloudPayments();
+      widget.pay(
+        "auth", // или 'charge'
+        {
+          //options
+          publicId: "test_api_00000000000000000000002", //id из личного кабинета
+          description: "Оплата товаров в example.com", //назначение
+          amount: 100, //сумма
+          currency: "RUB", //валюта
+          accountId: "user@example.com", //идентификатор плательщика (необязательно)
+          invoiceId: "1234567", //номер заказа  (необязательно)
+          email: "user@example.com", //email плательщика (необязательно)
+          skin: "mini", //дизайн виджета (необязательно)
+          data: {
+            myProp: "myProp value",
           },
         },
-        components: {
-          paymentButton: {
-            text: "Оплатить",
-            fontSize: "16px",
+        {
+          onSuccess: function (options) {
+            // success
+            //действие при успешной оплате
           },
-          paymentForm: {
-            labelFontSize: "16px",
-            activeLabelFontSize: "12px",
-            fontSize: "16px",
+          onFail: function (reason, options) {
+            // fail
+            //действие при неуспешной оплате
           },
-        },
-      }
-    );
-
-    blocksApp.mount(document.getElementById("element"));
-
-    blocksApp.on("destroy", () => {
-      console.log("destroy");
-    });
-    blocksApp.on("success", (result) => {
-      console.log("success", result);
-    });
-    blocksApp.on("fail", (result) => {
-      console.log("fail", result);
-    });
+          onComplete: function (paymentResult, options) {
+            //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+            //например вызов вашей аналитики Facebook Pixel
+          },
+        }
+      );
+    }
+    pay();
   }, []);
 
   useEffect(() => {
@@ -131,12 +184,28 @@ const Form = () => {
       }
     };
     testing();
-  }, []);
+  });
 
   return (
     <>
-      <div id="element"></div>;
-      {/* <Card className={classes.card}>
+      {/* <form id="paymentFormSample" onSubmit={handleSubmit}>
+        <input type="text" placeholder="cardNumber" data-cp="cardNumber" />
+        <input type="text" placeholder="MM" data-cp="expDateMonth" />
+        <input type="text" placeholder="YY" data-cp="expDateYear" />
+        <input type="text" placeholder="CVV" data-cp="cvv" />
+        <input type="text" placeholder="card owner name" data-cp="name" />
+        <button type="submit">Оплатить 100 р.</button>
+      </form> */}
+      <div id="element"></div>
+    </>
+  );
+};
+
+{
+  /* <div id="element"></div>; */
+}
+{
+  /* <Card className={classes.card}>
         <form onSubmit={handleSubmit}>
           <TextField
             label="Card Number"
@@ -180,9 +249,7 @@ const Form = () => {
             </Button>
           </div>
         </form>
-      </Card> */}
-    </>
-  );
-};
+      </Card> */
+}
 
 export default Form;
