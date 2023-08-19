@@ -9,165 +9,16 @@ import { Helmet } from "react-helmet";
 // import CloudPayments from 'cloudpayments'
 
 const Form = (props) => {
-  // const [owner, setName] = useState("");
-  // const [cardNumber, setCardNumber] = useState("");
-  // const [expiryDate, setExpiryDate] = useState("");
-  const [ID, setPublicID] = useState("");
-
-  // const handleCardNumber = (e) => {
-  //   setCardNumber(e.target.value); //16 digits
-  // };
-
-  // const handleExpiryDate = (e) => {
-  //   setExpiryDate(e.target.value);
-  // };
-
-  // const handleCardUser = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // const cp = new window.CloudPayments();
-  // cp.publicKey = "pk_27a0fa56dbdd6c3825efe5664f40d";
-  // cp.apiUrl = "https://api.cloudpayments.uz/";
-
-  const paymentData = {
-    Amount: 1000,
-    Currency: "UZS",
-    Name: "John Doe",
-    CardCryptogramPacket: "ENCRYPTED_CARD_DATA",
-    InvoiceId: "123456789",
-    AccountId: "USER_ID",
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    console.log("click");
-
-    // const checkout = new window.cp.Checkout({
-    //   publicId: "test_api_000000000000000002",
-    //   container: document.getElementById("paymentFormSample"),
-    // });
-
-    // const fieldValues = {
-    //   cvv: "911",
-    //   cardNumber: "4242 4242 4242 4242",
-    //   expDateMonth: "12",
-    //   expDateYear: "24",
-    // };
-
-    // checkout
-    //   .createPaymentCryptogram()
-    //   .then((cryptogram) => {
-    //     console.log(cryptogram); // криптограмма
-    //   })
-    //   .catch((errors) => {
-    //     console.log(errors);
-    //   });
-  };
-
   useEffect(() => {
-    // const downloadScript = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "https://widget.cloudpayments.ru/bundles/paymentblocks.js"
-    //     );
-    //     const script = document.createElement("script");
-    //     script.text = response.data;
-    //     document.head.appendChild(script);
-    //     script.onload = initializePaymentBlocks;
-    //   } catch (error) {
-    //     console.error("Error downloading script:", error);
-    //   }
-    // };
-    // let blocksApp = new window.cp.PaymentBlocks(
-    //   {
-    //     publicId: "test_api_000000000000000002",
-    //     description: "Тестовая оплата",
-    //     amount: 100,
-    //     currency: "UZS",
-    //     invoiceId: "123",
-    //     accountId: "123",
-    //     email: "",
-    //     requireEmail: false,
-    //     language: "ru-RU",
-    //   },
-    //   {
-    //     appearance: {
-    //       colors: {
-    //         primaryButtonColor: "#2E71FC",
-    //         primaryButtonTextColor: "#FFFFFF",
-    //         primaryHoverButtonColor: "#2E71FC",
-    //         primaryButtonHoverTextColor: "#FFFFFF",
-    //         activeInputColor: "#0B1E46",
-    //         inputBackground: "#FFFFFF",
-    //         inputColor: "#8C949F",
-    //         inputBorderColor: "#E2E8EF",
-    //         errorColor: "#EB5757",
-    //       },
-    //       borders: {
-    //         radius: "8px",
-    //       },
-    //     },
-    //     components: {
-    //       paymentButton: {
-    //         text: "Оплатить",
-    //         fontSize: "16px",
-    //       },
-    //       paymentForm: {
-    //         labelFontSize: "16px",
-    //         activeLabelFontSize: "12px",
-    //         fontSize: "16px",
-    //       },
-    //     },
-    //   }
-    // );
-    // blocksApp.mount(document.getElementById("element"));
-    // blocksApp.on("destroy", () => {
-    //   console.log("destroy");
-    // });
-    // blocksApp.on("success", (result) => {
-    //   console.log("success", result);
-    // });
-    // blocksApp.on("fail", (result) => {
-    //   console.log("fail", result);
-    // });
-
-    // function pay() {
-    //   let widget = new window.cp.CloudPayments();
-    //   widget.pay(
-    //     "auth", // или 'charge'
-    //     {
-    //       //options
-    //       publicId: "test_api_00000000000000000000002", //id из личного кабинета
-    //       description: "Оплата товаров в 2", //назначение
-    //       amount: 100, //сумма
-    //       currency: "UZS", //валюта
-    //       accountId: "user@example.com", //идентификатор плательщика (необязательно)
-    //       invoiceId: "1234567", //номер заказа  (необязательно)
-    //       // email: "user@example.com", //email плательщика (необязательно)
-    //       skin: "mini", //дизайн виджета (необязательно)
-    //       data: {
-    //         myProp: "myProp value",
-    //       },
-    //     },
-    //     {
-    //       onSuccess: function (options) {
-    //         // success
-    //         //действие при успешной оплате
-    //       },
-    //       onFail: function (reason, options) {
-    //         // fail
-    //         //действие при неуспешной оплате
-    //       },
-    //       onComplete: function (paymentResult, options) {
-    //         //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
-    //         //например вызов вашей аналитики Facebook Pixel
-    //       },
-    //     }
-    //   );
-    // }
-    // pay();
+    const recievePublicID = async () => {
+      try {
+        const response = await axios.post("http://localhost:3010/publicID");
+        await props.onAdd({ publicId: response.data });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    recievePublicID();
 
     const sendServerRequest = async () => {
       const hi = "Hiii";
@@ -193,18 +44,7 @@ const Form = (props) => {
       }
     };
     recieveRequest();
-
-    const recievePublicID = async () => {
-      try {
-        const response = await axios.post("http://localhost:3010/publicID");
-        setPublicID(response.data);
-        // console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    recievePublicID();
-  });
+  }, []);
 
   // useEffect(() => {
   //   const handleCheckout = async () => {
@@ -249,11 +89,6 @@ const Form = (props) => {
   //   testing();
   // });
 
-  const handleTransfer = (e) => {
-    e.preventDefault();
-    props.onAdd({ id: ID });
-  };
-
   return (
     <>
       {/* <form id="paymentFormSample" onSubmit={handleSubmit}>
@@ -272,7 +107,6 @@ const Form = (props) => {
         <input type="text" data-cp="cvv" />
         <input type="text" data-cp="name" />
         <button type="submit">Оплатить 100 р.</button>
-        <button onClick={handleTransfer}>Transfer Data</button>
       </form>
     </>
   );

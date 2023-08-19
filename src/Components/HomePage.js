@@ -1,5 +1,6 @@
 import Form from "./Form";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const HomePage = () => {
   const [ID, setID] = useState("");
@@ -8,23 +9,10 @@ const HomePage = () => {
     setID(event);
   };
 
-  //   useEffect(() => {
   useEffect(() => {
+    console.log(ID);
     const handleCheckout = async () => {
       try {
-        // const checkout = await new window.cp.Checkout({
-        //   publicId: ID.id,
-        //   container: document.getElementById("paymentForSample"),
-        // });
-        // const fieldValues = {
-        //   cvv: "911",
-        //   cardNumber: "8600 0000 0000 0007",
-        //   expDateMonth: "12",
-        //   expDateYear: "24",
-        // };
-        // checkout.createPaymentCryptogram(fieldValues).then((cryptogram) => {
-        //   console.log(cryptogram);
-        // });
         const payments = new window.cp.CloudPayments();
 
         payments.oncomplete = (result) => {
@@ -33,24 +21,38 @@ const HomePage = () => {
 
         payments
           .pay("charge", {
-            // options
-            publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
-            description: "Оплата товаров в example.com",
-            amount: 123000,
-            currency: "RUB",
+            publicId: ID.publicId,
+            description: "Оплата товаров в course.com",
+            amount: 100,
+            currency: "UZS",
             invoiceId: 1234567,
           })
           .then((result) => {
-            // Объект типа WidgetResult
             console.log("result", result);
           });
       } catch (error) {
         console.log(error);
       }
     };
-
     handleCheckout();
   }, [ID]);
+
+  const recieveReciept = async () => {
+    try {
+      const requestReciept = await axios.post("http://localhost:3010/reciept");
+      let receipt = requestReciept;
+
+      const data = {};
+      data.CloudPayments = {
+        CustomerReceipt: receipt, // Онлайн-чек
+      };
+      console.log(requestReciept);
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  recieveReciept();
 
   return (
     <>
