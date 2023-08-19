@@ -9,6 +9,7 @@ import RootLayout from "./Components/RootLayout";
 import ErrorPage from "./Components/ErrorPage";
 import Form from "./Components/Form";
 import SuccessPage from "./Components/SuccessPage";
+import HomePage from "./Components/HomePage";
 
 const telegramBot = window.Telegram.WebApp;
 const router = createHashRouter([
@@ -19,11 +20,11 @@ const router = createHashRouter([
     children: [
       {
         path: "",
-        element: <Form />,
+        element: <HomePage />,
       },
       { path: "success", element: <SuccessPage></SuccessPage> },
     ],
-  }, 
+  },
 ]);
 
 function App() {
