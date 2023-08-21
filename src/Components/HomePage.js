@@ -39,7 +39,7 @@ const HomePage = () => {
 
   const recieveReciept = async () => {
     try {
-      const requestReciept = await axios.post("http://localhost:3010/reciept");
+      const requestReciept = await axios.post("http://localhost:3010/receipt");
       let receipt = requestReciept;
 
       const data = {};
