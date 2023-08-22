@@ -104,7 +104,6 @@ const Form = (props) => {
         <input type="text" data-cp="cardNumber" />
         <input type="text" data-cp="expDateMonth" />
         <input type="text" data-cp="expDateYear" />
-        <input type="text" data-cp="cvv" />
         <input type="text" data-cp="name" />
         <button type="submit">Оплатить 100 р.</button>
       </form>

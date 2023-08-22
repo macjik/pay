@@ -40,14 +40,14 @@ const HomePage = () => {
   const recieveReciept = async () => {
     try {
       const requestReciept = await axios.post("http://localhost:3010/receipt");
-      let receipt = requestReciept;
+      // let receipt = requestReciept;
 
-      const data = {};
-      data.CloudPayments = {
-        CustomerReceipt: receipt, // Онлайн-чек
-      };
-      console.log(requestReciept);
-      console.log(data);
+      // const data = {};
+      // data.CloudPayments = {
+      //   CustomerReceipt: receipt, // Онлайн-чек
+      // };
+      console.log(requestReciept.data);
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }
