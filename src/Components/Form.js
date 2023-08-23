@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, CircularProgress, Card } from "@mui/material";
-import { TextField } from "@mui/material";
-import classes from "./Style/Form.module.css";
-import InputMask from "react-input-mask";
 import axios from "axios";
-import { Helmet } from "react-helmet";
 // import 'https://widget.cloudpayments.uz/bundles/paymentblocks.js'
 // import CloudPayments from 'cloudpayments'
 
@@ -91,14 +86,6 @@ const Form = (props) => {
 
   return (
     <>
-      {/* <form id="paymentFormSample" onSubmit={handleSubmit}>
-        <input type="text" placeholder="cardNumber" data-cp="cardNumber" />
-        <input type="text" placeholder="MM" data-cp="expDateMonth" />
-        <input type="text" placeholder="YY" data-cp="expDateYear" />
-        <input type="text" placeholder="CVV" data-cp="cvv" />
-        <input type="text" placeholder="card owner name" data-cp="name" />
-        <button type="submit">Оплатить 100 р.</button>
-      </form> */}
       <div id="element"></div>
       <form id="paymentFormSample" autoComplete="off">
         <input type="text" data-cp="cardNumber" />
@@ -110,56 +97,5 @@ const Form = (props) => {
     </>
   );
 };
-
-{
-  /* <div id="element"></div>; */
-}
-{
-  /* <Card className={classes.card}>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Card Number"
-            variant="outlined"
-            required
-            type="number"
-            onChange={handleCardNumber}
-            value={cardNumber}
-          ></TextField>
-          <InputMask
-            label="Card Expiry Date (MM/YY)"
-            variant="outlined"
-            required
-            type="text"
-            mask="99/99"
-            maskChar=""
-            value={expiryDate}
-            onChange={handleExpiryDate}
-          >
-            {(inputProps) => (
-              <TextField
-                label="Card Expiry Date (MM/YY)"
-                variant="outlined"
-                required
-                type="text"
-                inputProps={inputProps}
-              />
-            )}
-          </InputMask>
-          <TextField
-            label="Card Owner"
-            variant="outlined"
-            required
-            type="text"
-            onChange={handleCardUser}
-            value={owner}
-          ></TextField>
-          <div className={classes.buttons}>
-            <Button variant="contained" type="submit">
-              Pay
-            </Button>
-          </div>
-        </form>
-      </Card> */
-}
 
 export default Form;

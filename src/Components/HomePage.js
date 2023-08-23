@@ -39,15 +39,20 @@ const HomePage = () => {
 
   const recieveReciept = async () => {
     try {
-      const requestReciept = await axios.post("http://localhost:3010/receipt");
+      const requestRecieptURL = await axios.post(
+        "http://localhost:3010/receipt"
+      );
       // let receipt = requestReciept;
 
       // const data = {};
       // data.CloudPayments = {
       //   CustomerReceipt: receipt, // Онлайн-чек
       // };
-      console.log(requestReciept.data);
-      // console.log(data);
+      console.log(requestRecieptURL.data);
+      // const receipt = await axios.post(
+      //   requestRecieptURL.data.Model.ReceiptLocalUrl
+      // );
+      // console.log(receipt);
     } catch (err) {
       console.error(err);
     }
