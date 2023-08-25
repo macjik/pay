@@ -1,7 +1,6 @@
 import Form from "./Form";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import jsPDF from "jspdf";
 
 const HomePage = () => {
   const [ID, setID] = useState("");
@@ -38,13 +37,6 @@ const HomePage = () => {
     handleCheckout();
   }, [ID]);
 
-  const doc = jsPDF({
-    unit: "in",
-    format: [4, 2],
-    source: "https://receipts.uz/YIHyS4D",
-  });
-  console.log(doc)
-
   const recieveReciept = async () => {
     try {
       const requestRecieptURL = await axios.post(
@@ -57,6 +49,8 @@ const HomePage = () => {
       //   CustomerReceipt: receipt, // Онлайн-чек
       // };
       console.log(requestRecieptURL.data);
+      
+      
       // const receipt = await axios.post(
       //   requestRecieptURL.data.Model.ReceiptLocalUrl
       // );
