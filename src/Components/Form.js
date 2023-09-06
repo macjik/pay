@@ -5,15 +5,15 @@ import axios from "axios";
 
 const Form = (props) => {
   useEffect(() => {
-    const recievePublicID = async () => {
-      try {
-        const response = await axios.post("http://localhost:3010/publicID");
-        await props.onAdd({ publicId: response.data });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    recievePublicID();
+    // const recievePublicID = async () => {
+    //   try {
+    //     const response = await axios.post("http://localhost:3010/publicID");
+    //     await props.onAdd({ publicId: response.data });
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // recievePublicID();
 
     const sendServerRequest = async () => {
       const hi = "Hiii";
@@ -84,18 +84,7 @@ const Form = (props) => {
   //   testing();
   // });
 
-  return (
-    <>
-      <div id="element"></div>
-      <form id="paymentFormSample" autoComplete="off">
-        <input type="text" data-cp="cardNumber" />
-        <input type="text" data-cp="expDateMonth" />
-        <input type="text" data-cp="expDateYear" />
-        <input type="text" data-cp="name" />
-        <button type="submit">Оплатить 100 р.</button>
-      </form>
-    </>
-  );
+  return <></>;
 };
 
 export default Form;
