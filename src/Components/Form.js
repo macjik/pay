@@ -5,15 +5,15 @@ import axios from "axios";
 
 const Form = (props) => {
   useEffect(() => {
-    // const recievePublicID = async () => {
-    //   try {
-    //     const response = await axios.post("http://localhost:3010/publicID");
-    //     await props.onAdd({ publicId: response.data });
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // recievePublicID();
+    const recievePublicID = async () => {
+      try {
+        const response = await axios.post("http://localhost:3010/publicID");
+        await props.onAdd({ publicId: response.data });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    recievePublicID();
 
     const sendServerRequest = async () => {
       const hi = "Hiii";

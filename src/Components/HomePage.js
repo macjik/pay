@@ -3,32 +3,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const HomePage = () => {
-  useEffect(() => {
-    // const recievePublicID = async () => {
-    //   try {
-    //     const response = await axios.post("http://localhost:3010/publicID");
-    //     // await props.onAdd({ publicId: response.data });
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // recievePublicID();
+  const [ID, setID] = useState("");
 
+  const handleOnAdd = async (event) => {
+    setID(event);
+  };
+
+  useEffect(() => {
+    console.log(ID);
     const handleCheckout = async () => {
       try {
-        const response = await axios.post("http://localhost:3010/publicID");
-
         const payments = new window.cp.CloudPayments();
 
         payments.oncomplete = (result) => {
           console.log("result", result);
         };
+
         payments
           .pay("charge", {
-            publicId: response.data,
+            publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
             description: "Оплата товаров в course.com",
-            amount: 400,
+            amount: 5000,
             currency: "UZS",
             invoiceId: 1234567,
           })
@@ -36,11 +31,11 @@ const HomePage = () => {
             console.log("result", result);
           });
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
     handleCheckout();
-  }, []);
+  }, [ID]);
 
   const recieveReciept = async () => {
     try {
@@ -65,7 +60,11 @@ const HomePage = () => {
   };
   recieveReciept();
 
-  return <></>;
+  return (
+    <>
+      <Form onAdd={handleOnAdd}></Form>
+    </>
+  );
 };
 
 export default HomePage;

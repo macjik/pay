@@ -11,7 +11,6 @@ import Form from "./Components/Form";
 import SuccessPage from "./Components/SuccessPage";
 import HomePage from "./Components/HomePage";
 
-const telegramBot = window.Telegram.WebApp;
 const router = createHashRouter([
   {
     path: "/",
@@ -27,6 +26,7 @@ const router = createHashRouter([
   },
 ]);
 
+const telegramBot = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
     telegramBot.ready();
