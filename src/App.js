@@ -30,8 +30,8 @@ const router = createHashRouter([
 
 function App() {
   useEffect(() => {
-    console.log(telegramBot.WebAppUser)
-    // telegramBot.WebAppUser.sendData()
+    console.log(telegramBot.WebAppUser);
+    telegramBot.initData.sendData((e) => e);
     telegramBot.sendData(`Hey u are`);
     telegramBot.ready();
   }, []);
