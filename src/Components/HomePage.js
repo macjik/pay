@@ -18,14 +18,14 @@ const HomePage = () => {
         payments.oncomplete = (result) => {
           console.log("result", result);
         };
-
+        // https://developers.cloudpayments.uz/#ustanovka-vidzheta
         payments
           .pay("charge", {
             publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
-            description: "Оплата товаров в course.com",
+            description: 'description',
             amount: 5000,
             currency: "UZS",
-            invoiceId: 1234567,
+            invoiceId: 34234,
           })
           .then((result) => {
             console.log("result", result);

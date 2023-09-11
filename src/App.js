@@ -12,6 +12,7 @@ import SuccessPage from "./Components/SuccessPage";
 import HomePage from "./Components/HomePage";
 
 const telegramBot = window.Telegram.WebApp;
+// initDataUnsafe.query_id
 const router = createHashRouter([
   {
     path: "/",
@@ -29,6 +30,7 @@ const router = createHashRouter([
 
 function App() {
   useEffect(() => {
+    telegramBot.sendData(`Hey u are`);
     telegramBot.ready();
   });
 
