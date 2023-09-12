@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     console.log(telegramBot.version);
     console.log(telegramBot.initData);
-    telegramBot.sendData(telegramBot.version, telegramBot.initData);
+    telegramBot.sendData([telegramBot.version, telegramBot.initData]);
     telegramBot.ready();
   }, []);
 
