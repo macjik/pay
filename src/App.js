@@ -32,7 +32,12 @@ function App() {
   useEffect(() => {
     console.log(telegramBot.version);
     console.log(telegramBot.initData);
-    telegramBot.sendData([telegramBot.version, telegramBot.initData]);
+    console.log(telegramBot.query_id);
+    telegramBot.sendData([
+      telegramBot.version,
+      telegramBot.initData,
+      telegramBot.query_id,
+    ]);
     telegramBot.ready();
   }, []);
 
