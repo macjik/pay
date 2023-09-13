@@ -13,12 +13,14 @@ const HomePage = () => {
     console.log(window.Telegram.WebApp.version);
     console.log(window.Telegram.WebApp.initData);
     console.log(window.Telegram.WebApp.query_id);
+    console.log(window.Telegram.WebApp.WebAppInitData);
+    console.log(window.Telegram.WebApp.WebAppUser);
     window.Telegram.WebApp.sendData([
       window.Telegram.WebApp.version,
       window.Telegram.WebApp.initData,
       window.Telegram.WebApp.query_id,
     ]);
-    console.log(ID)
+    console.log(ID);
     const handleCheckout = async () => {
       try {
         const payments = new window.cp.CloudPayments();
