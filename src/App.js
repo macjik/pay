@@ -35,11 +35,13 @@ function App() {
     console.log(telegramBot.query_id);
     console.log(telegramBot);
     telegramBot.sendData([
+      JSON.stringify({ data: "From web app" }),
       telegramBot.version,
       telegramBot.initData,
       telegramBot.query_id,
       telegramBot.WebAppUser,
       telegramBot.WebAppInitData,
+      telegramBot.KeyboardButton,
       telegramBot,
     ]);
     telegramBot.ready();
