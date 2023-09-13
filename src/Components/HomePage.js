@@ -10,7 +10,6 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    console.log(ID);
     console.log(window.Telegram.WebApp.version);
     console.log(window.Telegram.WebApp.initData);
     console.log(window.Telegram.WebApp.query_id);
@@ -19,7 +18,7 @@ const HomePage = () => {
       window.Telegram.WebApp.initData,
       window.Telegram.WebApp.query_id,
     ]);
-
+    console.log(ID)
     const handleCheckout = async () => {
       try {
         const payments = new window.cp.CloudPayments();
