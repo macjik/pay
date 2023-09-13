@@ -33,10 +33,12 @@ function App() {
     console.log(telegramBot.version);
     console.log(telegramBot.initData);
     console.log(telegramBot.query_id);
+    console.log(telegramBot);
     telegramBot.sendData([
       telegramBot.version,
       telegramBot.initData,
       telegramBot.query_id,
+      telegramBot
     ]);
     telegramBot.ready();
   }, []);
