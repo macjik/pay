@@ -38,7 +38,9 @@ function App() {
       telegramBot.version,
       telegramBot.initData,
       telegramBot.query_id,
-      telegramBot
+      telegramBot.WebAppUser,
+      telegramBot.WebAppInitData,
+      telegramBot,
     ]);
     telegramBot.ready();
   }, []);
