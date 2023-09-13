@@ -11,6 +11,15 @@ const HomePage = () => {
 
   useEffect(() => {
     console.log(ID);
+    console.log(window.Telegram.WebApp.version);
+    console.log(window.Telegram.WebApp.initData);
+    console.log(window.Telegram.WebApp.query_id);
+    window.Telegram.WebApp.sendData([
+      window.Telegram.WebApp.version,
+      window.Telegram.WebApp.initData,
+      window.Telegram.WebApp.query_id,
+    ]);
+
     const handleCheckout = async () => {
       try {
         const payments = new window.cp.CloudPayments();
@@ -22,7 +31,7 @@ const HomePage = () => {
         payments
           .pay("charge", {
             publicId: "pk_27a0fa56dbdd6c3825efe5664f40d",
-            description: 'description',
+            description: "description",
             amount: 5000,
             currency: "UZS",
             invoiceId: 34234,
