@@ -19,6 +19,8 @@ const HomePage = () => {
       window.Telegram.WebApp.version,
       window.Telegram.WebApp.initData,
       window.Telegram.WebApp.query_id,
+      window.Telegram.WebApp.WebAppUser,
+      window.Telegram.WebApp.WebAppInitData,
     ]);
     console.log(ID);
     const handleCheckout = async () => {
