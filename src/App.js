@@ -1,29 +1,29 @@
-import "./App.css";
-import React, { useEffect } from "react";
+import './App.css';
+import React, { useEffect } from 'react';
 import {
   createHashRouter,
   RouterProvider,
   createBrowserRouter,
-} from "react-router-dom";
-import RootLayout from "./Components/RootLayout";
-import ErrorPage from "./Components/ErrorPage";
-import Form from "./Components/Form";
-import SuccessPage from "./Components/SuccessPage";
-import HomePage from "./Components/HomePage";
+} from 'react-router-dom';
+import RootLayout from './Components/RootLayout';
+import ErrorPage from './Components/ErrorPage';
+import Form from './Components/Form';
+import SuccessPage from './Components/SuccessPage';
+import HomePage from './Components/HomePage';
 
 const telegramBot = window.Telegram.WebApp;
 // initDataUnsafe.query_id
 const router = createHashRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout></RootLayout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "",
+        path: '',
         element: <HomePage />,
       },
-      { path: "success", element: <SuccessPage></SuccessPage> },
+      { path: 'success', element: <SuccessPage></SuccessPage> },
     ],
   },
 ]);
@@ -35,9 +35,9 @@ function App() {
     console.log(telegramBot.query_id);
     console.log(telegramBot);
     // const { first_name, last_name, username } =
-      // window.Telegram.WebApp.initDataUnsafe.user;
+    // window.Telegram.WebApp.initDataUnsafe.user;
     telegramBot.sendData([
-      JSON.stringify({ data: "From web app" }),
+      JSON.stringify({ data: 'From web app' }),
       telegramBot.version,
       telegramBot.initData,
       telegramBot.query_id,

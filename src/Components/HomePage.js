@@ -1,9 +1,11 @@
 import Form from './Form';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [ID, setID] = useState('');
+  const [params, setParams] = useState([]);
 
   const handleOnAdd = async (event) => {
     setID(event);
@@ -15,6 +17,13 @@ const HomePage = () => {
     console.log(window.Telegram.WebApp.query_id);
     console.log(window.Telegram.WebApp.WebAppInitData);
     console.log(window.Telegram.WebApp.WebAppUser);
+    setParams([
+      window.Telegram.WebApp.version,
+      window.Telegram.WebApp.initData,
+      window.Telegram.WebApp.query_id,
+      window.Telegram.WebApp.WebAppInitData,
+      window.Telegram.WebApp.WebAppUser,
+    ]);
     window.Telegram.WebApp.sendData([
       window.Telegram.WebApp.version,
       window.Telegram.WebApp.initData,
@@ -23,7 +32,7 @@ const HomePage = () => {
       window.Telegram.WebApp.WebAppInitData,
     ]);
     console.log(ID);
-  });
+  }, []);
   //   const handleCheckout = async () => {
   //     try {
   //       const payments = new window.cp.CloudPayments();
@@ -81,6 +90,7 @@ const HomePage = () => {
         <h6>{JSON.stringify(window.Telegram.WebApp.query_id)}</h6>
         <h6>{JSON.stringify(window.Telegram.WebApp.initData)}</h6>
         <h6>{JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}</h6>
+        <h6>{JSON.stringify(params)}</h6>
       </div>
     </>
   );
