@@ -41,12 +41,12 @@ const HomePage = () => {
       const invoiceId = queryParams.get('invoiceId');
       // https://developers.cloudpayments.uz/#ustanovka-vidzheta
       try {
-        const payments = new window.cp.CloudPayments();
+        const payments = await new window.cp.CloudPayments();
 
         payments.oncomplete = (result) => {
           console.log('result', result);
         };
-        payments
+        await payments
           .pay('charge', {
             publicId: 'pk_27a0fa56dbdd6c3825efe5664f40d',
             description: description,
