@@ -15,17 +15,17 @@ const Form = (props) => {
     };
     recievePublicID();
 
-    const sendServerRequest = async () => {
-      const hi = "Hiii";
-      try {
-        const request = axios.post("http://localhost:3010/", { hi });
-        const response = await request;
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    sendServerRequest();
+    // const sendServerRequest = async () => {
+    //   const hi = "Hiii";
+    //   try {
+    //     const request = axios.post("http://localhost:3010/", { hi });
+    //     const response = await request;
+    //     console.log(response.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // sendServerRequest();
 
     const recieveRequest = async () => {
       try {
