@@ -13,20 +13,20 @@ import HomePage from './Components/HomePage';
 
 const telegramBot = window.Telegram.WebApp;
 // initDataUnsafe.query_id
-const router = createHashRouter([
-  {
-    path: '/',
-    element: <RootLayout></RootLayout>,
-    errorElement: <ErrorPage></ErrorPage>,
-    children: [
-      {
-        path: '',
-        element: <HomePage />,
-      },
-      { path: 'success', element: <SuccessPage></SuccessPage> },
-    ],
-  },
-]);
+// const router = createHashRouter([
+//   {
+//     path: '/',
+//     element: <RootLayout></RootLayout>,
+//     errorElement: <ErrorPage></ErrorPage>,
+//     children: [
+//       {
+//         path: '',
+//         element: <HomePage />,
+//       },
+//       { path: 'success', element: <SuccessPage></SuccessPage> },
+//     ],
+//   },
+// ]);
 
 function App() {
   useEffect(() => {
@@ -54,7 +54,8 @@ function App() {
 
   return (
     <React.Fragment>
-      <RouterProvider router={router}></RouterProvider>;
+      {/* <RouterProvider router={router}></RouterProvider>; */}
+      <HomePage></HomePage>
     </React.Fragment>
   );
 }
