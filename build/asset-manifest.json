@@ -1,27 +1,15 @@
 {
   "files": {
     "main.css": "/pay/static/css/main.073c9b0a.css",
-<<<<<<< HEAD
-    "main.js": "/pay/static/js/main.a63f7141.js",
+    "main.js": "/pay/static/js/main.537fb493.js",
     "static/js/787.28cb0dcd.chunk.js": "/pay/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/pay/index.html",
     "main.073c9b0a.css.map": "/pay/static/css/main.073c9b0a.css.map",
-    "main.a63f7141.js.map": "/pay/static/js/main.a63f7141.js.map",
-=======
-    "main.js": "/pay/static/js/main.1702c646.js",
-    "static/js/787.28cb0dcd.chunk.js": "/pay/static/js/787.28cb0dcd.chunk.js",
-    "index.html": "/pay/index.html",
-    "main.073c9b0a.css.map": "/pay/static/css/main.073c9b0a.css.map",
-    "main.1702c646.js.map": "/pay/static/js/main.1702c646.js.map",
->>>>>>> aa82a9ba5cb69fc59924e1e9308179344a988e6d
+    "main.537fb493.js.map": "/pay/static/js/main.537fb493.js.map",
     "787.28cb0dcd.chunk.js.map": "/pay/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-<<<<<<< HEAD
-    "static/js/main.a63f7141.js"
-=======
-    "static/js/main.1702c646.js"
->>>>>>> aa82a9ba5cb69fc59924e1e9308179344a988e6d
+    "static/js/main.537fb493.js"
   ]
 }

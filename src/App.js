@@ -30,25 +30,25 @@ const router = createHashRouter([
 
 function App() {
   useEffect(() => {
-    console.log(telegramBot.version);
-    console.log(telegramBot.initData);
-    console.log(telegramBot.query_id);
-    console.log(telegramBot);
-    // const { first_name, last_name, username } =
-    // window.Telegram.WebApp.initDataUnsafe.user;
-    telegramBot.sendData([
-      JSON.stringify({ data: 'From web app' }),
-      telegramBot.version,
-      telegramBot.initData,
-      telegramBot.query_id,
-      telegramBot.WebAppUser,
-      telegramBot.WebAppInitData,
-      // telegramBot.KeyboardButton,
-      // first_name,
-      // last_name,
-      // username,
-      // telegramBot,
-    ]);
+    // console.log(telegramBot.version);
+    // console.log(telegramBot.initData);
+    // console.log(telegramBot.query_id);
+    // console.log(telegramBot);
+    // // const { first_name, last_name, username } =
+    // // window.Telegram.WebApp.initDataUnsafe.user;
+    // telegramBot.sendData([
+    //   JSON.stringify({ data: 'From web app' }),
+    //   telegramBot.version,
+    //   telegramBot.initData,
+    //   telegramBot.query_id,
+    //   telegramBot.WebAppUser,
+    //   telegramBot.WebAppInitData,
+    //   // telegramBot.KeyboardButton,
+    //   // first_name,
+    //   // last_name,
+    //   // username,
+    //   // telegramBot,
+    // ]);
     telegramBot.ready();
   }, []);
 
