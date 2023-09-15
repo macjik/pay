@@ -6,6 +6,7 @@ import { useParams, useLocation } from 'react-router-dom';
 const HomePage = () => {
   const { id } = useParams();
   const queryParams = new URLSearchParams(window.location.search);
+  const [result, setResult] = useState('');
 
   // useEffect(() => {
   // console.log(window.Telegram.WebApp.version);
@@ -22,18 +23,6 @@ const HomePage = () => {
   // ]);
   // }, []);
 
-  // useEffect(() => {
-  //   const standartTariffRequest = async () => {
-  //     try {
-  //       const response = await axios.post('http://localhost:3010/');
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   standartTariffRequest();
-  // }, []);
-
   useEffect(() => {
     const handleCheckout = async () => {
       const description = queryParams.get('description');
@@ -43,8 +32,12 @@ const HomePage = () => {
       try {
         const payments = await new window.cp.CloudPayments();
 
-        payments.oncomplete = (result) => {
+        payments.oncomplete = async (result) => {
           console.log('result', result);
+          let paymentResult = await axios.post('http://localhost:3010/result', {
+            result,
+          });
+          console.log(paymentResult);
         };
         await payments
           .pay('charge', {
@@ -63,6 +56,15 @@ const HomePage = () => {
     };
     handleCheckout();
   }, []);
+
+  // const sendPaymentResult = async () => {
+  // console.log(result);
+  //   let paymentResult = await axios.post('http://localhost:3010/result', {
+  //     result,
+  //   });
+  //   console.log(paymentResult);
+  // };
+  // sendPaymentResult();
 
   // const recieveReciept = async () => {
   //   try {

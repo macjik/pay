@@ -10,6 +10,7 @@ import ErrorPage from './Components/ErrorPage';
 import Form from './Components/Form';
 import SuccessPage from './Components/SuccessPage';
 import HomePage from './Components/HomePage';
+import axios from 'axios';
 
 const telegramBot = window.Telegram.WebApp;
 // initDataUnsafe.query_id
@@ -51,6 +52,8 @@ function App() {
     // ]);
     telegramBot.ready();
   }, []);
+
+
 
   return (
     <React.Fragment>
