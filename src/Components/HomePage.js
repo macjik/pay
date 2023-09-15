@@ -8,18 +8,18 @@ const HomePage = () => {
   const queryParams = new URLSearchParams(window.location.search);
 
   // useEffect(() => {
-    // console.log(window.Telegram.WebApp.version);
-    // console.log(window.Telegram.WebApp.initData);
-    // console.log(window.Telegram.WebApp.query_id);
-    // console.log(window.Telegram.WebApp.WebAppInitData);
-    // console.log(window.Telegram.WebApp.WebAppUser);
-    // window.Telegram.WebApp.sendData([
-    //   window.Telegram.WebApp.version,
-    //   window.Telegram.WebApp.initData,
-    //   window.Telegram.WebApp.query_id,
-    //   window.Telegram.WebApp.WebAppUser,
-    //   window.Telegram.WebApp.WebAppInitData,
-    // ]);
+  // console.log(window.Telegram.WebApp.version);
+  // console.log(window.Telegram.WebApp.initData);
+  // console.log(window.Telegram.WebApp.query_id);
+  // console.log(window.Telegram.WebApp.WebAppInitData);
+  // console.log(window.Telegram.WebApp.WebAppUser);
+  // window.Telegram.WebApp.sendData([
+  //   window.Telegram.WebApp.version,
+  //   window.Telegram.WebApp.initData,
+  //   window.Telegram.WebApp.query_id,
+  //   window.Telegram.WebApp.WebAppUser,
+  //   window.Telegram.WebApp.WebAppInitData,
+  // ]);
   // }, []);
 
   // useEffect(() => {

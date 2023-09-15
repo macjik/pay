@@ -13,7 +13,7 @@ import HomePage from './Components/HomePage';
 
 const telegramBot = window.Telegram.WebApp;
 // initDataUnsafe.query_id
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout></RootLayout>,
