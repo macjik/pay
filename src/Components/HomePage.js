@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom';
 
 const HomePage = () => {
-  const [ID, setID] = useState('');
+  const [paymentData, setPaymentData] = useState('');
 
   useEffect(() => {
     console.log(window.Telegram.WebApp.version);
@@ -19,7 +19,7 @@ const HomePage = () => {
       window.Telegram.WebApp.WebAppUser,
       window.Telegram.WebApp.WebAppInitData,
     ]);
-    console.log(ID);
+    console.log(paymentData);
   }, []);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const HomePage = () => {
       try {
         const response = await axios.post('http://localhost:3010/');
         console.log(response.data);
-        setID(response.data);
+        setPaymentData(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -37,21 +37,21 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleCheckout = async () => {
-      if (ID) {
+      // https://developers.cloudpayments.uz/#ustanovka-vidzheta
+      if (paymentData) {
         try {
           const payments = new window.cp.CloudPayments();
 
           payments.oncomplete = (result) => {
             console.log('result', result);
           };
-          // https://developers.cloudpayments.uz/#ustanovka-vidzheta
           payments
             .pay('charge', {
               publicId: 'pk_27a0fa56dbdd6c3825efe5664f40d',
-              description: ID.description,
-              amount: ID.amount,
+              description: paymentData.description,
+              amount: paymentData.amount,
               currency: 'UZS',
-              invoiceId: ID.invoiceId,
+              invoiceId: paymentData.invoiceId,
             })
             .then((result) => {
               console.log('result', result);
@@ -62,7 +62,7 @@ const HomePage = () => {
       }
     };
     handleCheckout();
-  }, [ID]);
+  }, [paymentData]);
 
   // const recieveReciept = async () => {
   //   try {
@@ -87,16 +87,7 @@ const HomePage = () => {
   // };
   // recieveReciept();
 
-  return (
-    <>
-      <div className='container'>
-        <h6>{JSON.stringify({ data: 'From web app' })}</h6>
-        <h6>{JSON.stringify(window.Telegram.WebApp.query_id)}</h6>
-        <h6>{JSON.stringify(window.Telegram.WebApp.initData)}</h6>
-        <h6>{JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}</h6>
-      </div>
-    </>
-  );
+  return <></>;
 };
 
 export default HomePage;
