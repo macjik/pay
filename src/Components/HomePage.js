@@ -5,6 +5,9 @@ import { useParams, useLocation } from 'react-router-dom';
 
 const HomePage = () => {
   const [paymentData, setPaymentData] = useState('');
+  const { id } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
   useEffect(() => {
     console.log(window.Telegram.WebApp.version);
@@ -37,6 +40,9 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleCheckout = async () => {
+      const description = queryParams.get('description');
+      const amount = queryParams.get('amount');
+      const invoiceId = queryParams.get('invoiceId');
       // https://developers.cloudpayments.uz/#ustanovka-vidzheta
       if (paymentData) {
         try {
