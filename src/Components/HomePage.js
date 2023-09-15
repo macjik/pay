@@ -8,18 +8,18 @@ const HomePage = () => {
   const queryParams = new URLSearchParams(window.location.search);
 
   // useEffect(() => {
-    // console.log(window.Telegram.WebApp.version);
-    // console.log(window.Telegram.WebApp.initData);
-    // console.log(window.Telegram.WebApp.query_id);
-    // console.log(window.Telegram.WebApp.WebAppInitData);
-    // console.log(window.Telegram.WebApp.WebAppUser);
-    // window.Telegram.WebApp.sendData([
-    //   window.Telegram.WebApp.version,
-    //   window.Telegram.WebApp.initData,
-    //   window.Telegram.WebApp.query_id,
-    //   window.Telegram.WebApp.WebAppUser,
-    //   window.Telegram.WebApp.WebAppInitData,
-    // ]);
+  // console.log(window.Telegram.WebApp.version);
+  // console.log(window.Telegram.WebApp.initData);
+  // console.log(window.Telegram.WebApp.query_id);
+  // console.log(window.Telegram.WebApp.WebAppInitData);
+  // console.log(window.Telegram.WebApp.WebAppUser);
+  // window.Telegram.WebApp.sendData([
+  //   window.Telegram.WebApp.version,
+  //   window.Telegram.WebApp.initData,
+  //   window.Telegram.WebApp.query_id,
+  //   window.Telegram.WebApp.WebAppUser,
+  //   window.Telegram.WebApp.WebAppInitData,
+  // ]);
   // }, []);
 
   // useEffect(() => {
@@ -49,10 +49,10 @@ const HomePage = () => {
         payments
           .pay('charge', {
             publicId: 'pk_27a0fa56dbdd6c3825efe5664f40d',
-            description: description,
-            amount: parseInt(amount, 10),
+            description: 'description',
+            amount: 2345,
             currency: 'UZS',
-            invoiceId: parseInt(invoiceId, 10),
+            invoiceId: 3466,
           })
           .then((result) => {
             console.log('result', result);
