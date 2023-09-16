@@ -27,7 +27,7 @@ const HomePage = () => {
     const handleCheckout = async () => {
       const description = queryParams.get('description');
       const amount = queryParams.get('amount');
-      const invoiceId = queryParams.get('invoiceId');
+      const invoiceId = queryParams.get('invoiceid');
       // https://developers.cloudpayments.uz/#ustanovka-vidzheta
       try {
         const payments = await new window.cp.CloudPayments();
