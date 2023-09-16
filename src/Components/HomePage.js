@@ -38,11 +38,6 @@ const HomePage = () => {
           //   result,
           // });
           // console.log(paymentResult);
-          if (result.data.status === 'success') {
-            recieveRequest()
-          } else {
-            console.error('faillled')
-          }
         };
         await payments
           .pay('charge', {
@@ -97,7 +92,7 @@ const HomePage = () => {
         console.error(error);
       }
     };
-
+    recieveRequest();
   }, []);
 
   // const sendPaymentResult = async () => {
