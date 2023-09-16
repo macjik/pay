@@ -34,10 +34,10 @@ const HomePage = () => {
 
         payments.oncomplete = async (result) => {
           console.log('result', result);
-          let paymentResult = await axios.post('http://localhost:3010/result', {
-            result,
-          });
-          console.log(paymentResult);
+          // let paymentResult = await axios.post('http://localhost:3010/result', {
+          //   result,
+          // });
+          // console.log(paymentResult);
         };
         await payments
           .pay('charge', {
