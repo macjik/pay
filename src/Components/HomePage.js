@@ -41,7 +41,7 @@ const HomePage = () => {
         };
         await payments
           .pay('charge', {
-            publicId: 'pk_27a0fa56dbdd6c3825efe5664f40d',
+            publicId: 'pk_da8fe04edb10f78e6d7602f6a687d',
             description: description,
             amount: parseInt(amount, 10),
             currency: 'UZS',
