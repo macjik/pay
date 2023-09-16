@@ -38,6 +38,11 @@ const HomePage = () => {
           //   result,
           // });
           // console.log(paymentResult);
+          if (result.data.status === 'success') {
+            recieveRequest()
+          } else {
+            console.error('faillled')
+          }
         };
         await payments
           .pay('charge', {
@@ -46,6 +51,31 @@ const HomePage = () => {
             amount: parseInt(amount, 10),
             currency: 'UZS',
             invoiceId: parseInt(invoiceId, 10),
+            cloudpayments: {
+              Type: 'Income', // обязательное поле
+              Inn: '535005807', // обязательное поле
+              //InvoiceId: "1234567", // необязательное поле
+              //AccountId: "user@example.com", // необязательное поле
+              Region: 'Uzbekistan', // обязательное поле
+              CustomerReceipt: {
+                Items: [
+                  {
+                    label: description, // обязательное поле
+                    price: parseInt(amount, 10), // цена одного товара, обязательное поле
+                    quantity: 1, // количество товара, обязательное поле
+                    amount: parseInt(amount, 1), // сумма товара (price x quantity), обязательное поле
+                    vat: null, // ставка НДС, обязательное поле,
+                    spic: '10602999999000000', // код ИКПУ, обязательное поле
+                    packageCode: '1492981', // код упаковки, обязательное поле
+                  },
+                ],
+                //calculationPlace: "www.test.ru", // Место осуществления расчетов, необязательное поле
+                //Email: "user@example.com", // E-mail покупателя для отправки чека, необязательное поле
+                amounts: {
+                  Electronic: 500,
+                },
+              },
+            },
           })
           .then((result) => {
             console.log('result', result);
@@ -55,6 +85,19 @@ const HomePage = () => {
       }
     };
     handleCheckout();
+
+    const recieveRequest = async () => {
+      try {
+        const response = await axios.post('http://localhost:3010/pay');
+        console.log(response.data);
+        if (response.status !== 200) {
+          throw new Error(response.status);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
   }, []);
 
   // const sendPaymentResult = async () => {
@@ -66,28 +109,28 @@ const HomePage = () => {
   // };
   // sendPaymentResult();
 
-  // const recieveReciept = async () => {
-  //   try {
-  //     const requestRecieptURL = await axios.post(
-  //       "http://localhost:3010/receipt"
-  //     );
-  //     // let receipt = requestReciept;
+  const recieveReciept = async () => {
+    try {
+      const requestRecieptURL = await axios.post(
+        'http://localhost:3010/receipt'
+      );
+      // let receipt = requestReciept;
 
-  //     // const data = {};
-  //     // data.CloudPayments = {
-  //     //   CustomerReceipt: receipt, // Онлайн-чек
-  //     // };
-  //     console.log(requestRecieptURL.data);
+      // const data = {};
+      // data.CloudPayments = {
+      //   CustomerReceipt: receipt, // Онлайн-чек
+      // };
+      console.log(requestRecieptURL.data.receiptUrl);
 
-  //     // const receipt = await axios.post(
-  //     //   requestRecieptURL.data.Model.ReceiptLocalUrl
-  //     // );
-  //     // console.log(receipt);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-  // recieveReciept();
+      // const receipt = await axios.post(
+      //   requestRecieptURL.data.Model.ReceiptLocalUrl
+      // );
+      // console.log(receipt);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  recieveReciept();
 
   return <></>;
 };
