@@ -28,6 +28,20 @@ const HomePage = () => {
     const description = queryParams.get('description');
     const amount = queryParams.get('amount');
     const invoiceId = queryParams.get('invoiceid');
+    const Type = queryParams.get('Type');
+    const Inn = queryParams.get('Inn');
+    const InvoiceId = queryParams.get('InvoiceId');
+    const Region = queryParams.get('Uzbekistan');
+    const label = queryParams.get('label');
+    const price = queryParams.get('price');
+    const quantity = queryParams.get('quantity');
+    const vat = queryParams.get('vat');
+    const packageCode = queryParams.get('packageCode');
+    const spic = queryParams.get('spic');
+    const calculationPlace = queryParams.get('calculationPlace');
+    const phone = queryParams.get('phone');
+    const AgentSign = queryParams.get('AgentSign');
+
     // https://developers.cloudpayments.uz/#ustanovka-vidzheta
     const payments = new window.cp.CloudPayments({});
 
@@ -36,23 +50,23 @@ const HomePage = () => {
     };
 
     const receipt = {
-      Type: 'Income', // обязательное поле
+      Type: Type, // обязательное поле
       Inn: '41509926490018', // обязательное поле
-      InvoiceId: parseInt(invoiceId, 10) || 222, // необязательное поле
-      AccountId: 'user@example.com', // необязательное поле
+      InvoiceId: parseInt(InvoiceId, 10) || 222, // необязательное поле
+      // AccountId: 'user@example.com', // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
         //товарные позиции
         {
-          label: description || 'ss', //наименование товара
-          price: parseInt(amount, 10) || 222, //цена
+          label: label, //наименование товара
+          price: parseInt(price, 10), //цена
           quantity: 1.0, //количество
-          amount: parseInt(amount, 10) || 222, //сумма
+          amount: parseInt(price, 10), //сумма
           vat: null, //ставка НДС
           method: 0, // тег-1214 признак способа расчета - признак способа расчета
           object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
           // measurementUnit: 'шт', //единица измерения
-          packageCode: '1492981',
+          packageCode: parseInt(packageCode, 10),
           spic: '10602999999000000',
         },
         // {
@@ -83,16 +97,16 @@ const HomePage = () => {
         //   },
         // },
       ],
-      calculationPlace: 'http://firuzaikram.tilda.ws/', //место осуществления расчёта, по умолчанию берется значение из кассы
+      calculationPlace: calculationPlace, //место осуществления расчёта, по умолчанию берется значение из кассы
       taxationSystem: 0, //система налогообложения; необязательный, если у вас одна система налогообложения
       // email: '.com', //e-mail покупателя, если нужно отправить письмо с чеком
-      phone: '', //телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек
-      customerInfo: '', // тег-1227 Покупатель - наименование организации или фамилия, имя, отчество (при наличии), серия и номер паспорта покупателя (клиента)
+      phone: parseInt(phone, 10), //телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек
+      customerInfo: parseInt(phone, 10), // тег-1227 Покупатель - наименование организации или фамилия, имя, отчество (при наличии), серия и номер паспорта покупателя (клиента)
       customerInn: '', // тег-1228 ИНН покупателя
-      isBso: false, //чек является бланком строгой отчётности
-      AgentSign: null, //признак агента, тег ОФД 1057
+      // isBso: false, //чек является бланком строгой отчётности
+      // AgentSign: null, //признак агента, тег ОФД 1057
       amounts: {
-        electronic: parseInt(amount, 10) || 222, // Сумма оплаты электронными деньгами
+        electronic: parseInt(price, 10), // Сумма оплаты электронными деньгами
         advancePayment: 0.0, // Сумма из предоплаты (зачетом аванса) (2 знака после запятой)
         credit: 0.0, // Сумма постоплатой(в кредит) (2 знака после запятой)
         provision: 0.0, // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после запятой)
@@ -109,11 +123,11 @@ const HomePage = () => {
     payments
       .pay('charge', {
         // options
-        publicId: 'pk_da8fe04edb10f78e6d7602f6a687d',
-        description: description || 'ss',
-        amount: parseInt(amount, 10) || 222,
+        publicId:  'pk_27a0fa56dbdd6c3825efe5664f40d', //'pk_da8fe04edb10f78e6d7602f6a687d',
+        description: label,
+        amount: parseInt(price, 10),
         currency: 'UZS',
-        invoiceId: parseInt(invoiceId, 10) || 222,
+        invoiceId: parseInt(invoiceId, 10),
         data: data,
       })
       .then((result) => {
