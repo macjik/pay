@@ -38,16 +38,16 @@ const HomePage = () => {
     const receipt = {
       Type: 'Income', // обязательное поле
       Inn: '41509926490018', // обязательное поле
-      InvoiceId: parseInt(invoiceId, 10), // необязательное поле
+      InvoiceId: parseInt(invoiceId, 10) || 222, // необязательное поле
       AccountId: 'user@example.com', // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
         //товарные позиции
         {
-          label: description, //наименование товара
-          price: parseInt(amount, 10), //цена
+          label: description || 'ss', //наименование товара
+          price: parseInt(amount, 10) || 222, //цена
           quantity: 1.0, //количество
-          amount: parseInt(amount, 10), //сумма
+          amount: parseInt(amount, 10) || 222, //сумма
           vat: null, //ставка НДС
           method: 0, // тег-1214 признак способа расчета - признак способа расчета
           object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
@@ -92,7 +92,7 @@ const HomePage = () => {
       isBso: false, //чек является бланком строгой отчётности
       AgentSign: null, //признак агента, тег ОФД 1057
       amounts: {
-        electronic: parseInt(amount, 10), // Сумма оплаты электронными деньгами
+        electronic: parseInt(amount, 10) || 222, // Сумма оплаты электронными деньгами
         advancePayment: 0.0, // Сумма из предоплаты (зачетом аванса) (2 знака после запятой)
         credit: 0.0, // Сумма постоплатой(в кредит) (2 знака после запятой)
         provision: 0.0, // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после запятой)
@@ -110,10 +110,10 @@ const HomePage = () => {
       .pay('charge', {
         // options
         publicId: 'pk_da8fe04edb10f78e6d7602f6a687d',
-        description: description,
-        amount: parseInt(amount, 10),
+        description: description || 'ss',
+        amount: parseInt(amount, 10) || 222,
         currency: 'UZS',
-        invoiceId: parseInt(invoiceId, 10),
+        invoiceId: parseInt(invoiceId, 10) || 222,
         data: data,
       })
       .then((result) => {
@@ -169,7 +169,7 @@ const HomePage = () => {
   // };
   // recieveReciept();
 
-  return <>Open</>;
+  return <></>;
 };
 
 export default HomePage;
