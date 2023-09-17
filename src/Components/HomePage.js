@@ -47,13 +47,15 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-      try {
-        const sendResult = await axios.post('http://localhost:3010/result', {
-          result,
-        });
-        console.log(sendResult);
-      } catch (err) {
-        console.error(err);
+      if (result.status === 'success') {
+        try {
+          const response = await axios.post('http://localhost:3010/result', {
+            result: result.status === 'success' ? 'success' : 'fail',
+          });
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 
