@@ -45,8 +45,16 @@ const HomePage = () => {
     // https://developers.cloudpayments.uz/#ustanovka-vidzheta
     const payments = new window.cp.CloudPayments({});
 
-    payments.oncomplete = (result) => {
+    payments.oncomplete = async (result) => {
       console.log('result', result);
+      try {
+        const sendResult = await axios.post('http://localhost:3010/result', {
+          result,
+        });
+        console.log(sendResult);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     const receipt = {
@@ -123,7 +131,7 @@ const HomePage = () => {
     payments
       .pay('charge', {
         // options
-        publicId:  'pk_27a0fa56dbdd6c3825efe5664f40d', //'pk_da8fe04edb10f78e6d7602f6a687d',
+        publicId: 'pk_27a0fa56dbdd6c3825efe5664f40d', //'pk_da8fe04edb10f78e6d7602f6a687d',
         description: label,
         amount: parseInt(price, 10),
         currency: 'UZS',
