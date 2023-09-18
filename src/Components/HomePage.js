@@ -6,7 +6,6 @@ import { useParams, useLocation } from 'react-router-dom';
 const HomePage = () => {
   const { id } = useParams();
   const queryParams = new URLSearchParams(window.location.search);
-  const [result, setResult] = useState('');
 
   // useEffect(() => {
   // console.log(window.Telegram.WebApp.version);
@@ -47,15 +46,22 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-      if (result.status === 'success') {
-        try {
-          const response = await axios.post('http://localhost:3010/result', {
-            result: result.status === 'success' ? 'success' : 'fail',
-          });
-          console.log(response);
-        } catch (error) {
-          console.error(error);
-        }
+      try {
+        const request = await axios.post(
+          'http://localhost:3010/result',
+          {
+            result,
+            InvoiceId,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log(request);
+      } catch (error) {
+        console.error(error);
       }
     };
 
