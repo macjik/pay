@@ -48,8 +48,6 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-        console.error(error);
-      }
     };
 
     const receipt = {
