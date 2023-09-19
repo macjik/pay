@@ -30,6 +30,7 @@ const HomePage = () => {
     const Type = queryParams.get('Type');
     const Inn = queryParams.get('Inn');
     const InvoiceId = queryParams.get('InvoiceId');
+    const AccountId = queryParams.get('AccountId');
     const Region = queryParams.get('Uzbekistan');
     const label = queryParams.get('label');
     const price = queryParams.get('price');
@@ -66,7 +67,7 @@ const HomePage = () => {
     };
 
     const receipt = {
-      Type: Type, // обязательное поле
+      Type: 'Income', // обязательное поле
       Inn: '41509926490018', // обязательное поле
       InvoiceId: parseInt(InvoiceId, 10) || 222, // необязательное поле
       // AccountId: 'user@example.com', // необязательное поле
@@ -113,7 +114,7 @@ const HomePage = () => {
         //   },
         // },
       ],
-      calculationPlace: calculationPlace, //место осуществления расчёта, по умолчанию берется значение из кассы
+      calculationPlace: 'https://firuzaikram.uz/rod', //место осуществления расчёта, по умолчанию берется значение из кассы
       taxationSystem: 0, //система налогообложения; необязательный, если у вас одна система налогообложения
       // email: '.com', //e-mail покупателя, если нужно отправить письмо с чеком
       phone: parseInt(phone, 10), //телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек
