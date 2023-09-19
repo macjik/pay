@@ -29,6 +29,7 @@ const HomePage = () => {
     const invoiceId = queryParams.get('invoiceid');
     const Type = queryParams.get('Type');
     const Inn = queryParams.get('Inn');
+    const username = queryParams.get('AccountId');
     const InvoiceId = queryParams.get('InvoiceId');
     const Region = queryParams.get('Uzbekistan');
     const label = queryParams.get('label');
@@ -46,21 +47,6 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-      try {
-        const request = await axios.post(
-          'http://localhost:3010/result',
-          {
-            result,
-            InvoiceId,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        console.log(request);
-      } catch (error) {
         console.error(error);
       }
     };
@@ -69,7 +55,7 @@ const HomePage = () => {
       Type: Type, // обязательное поле
       Inn: '41509926490018', // обязательное поле
       InvoiceId: parseInt(InvoiceId, 10) || 222, // необязательное поле
-      // AccountId: 'user@example.com', // необязательное поле
+      AccountId: username, // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
         //товарные позиции
