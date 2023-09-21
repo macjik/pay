@@ -50,7 +50,6 @@ const HomePage = () => {
       console.log('result', result);
       await window.Telegram.WebApp.close();
     };
-
     const receipt = {
       Type: 'Income', // обязательное поле
       Inn: '41509926490018', // обязательное поле
