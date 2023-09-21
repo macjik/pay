@@ -48,7 +48,7 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-      window.Telegram.WebApp.close();
+      await window.Telegram.WebApp.close();
     };
 
     const receipt = {
@@ -132,10 +132,10 @@ const HomePage = () => {
         InvoiceId: parseInt(invoiceId, 10),
         data: data,
       })
-      .then((result) => {
+      .then(async (result) => {
         // Объект типа WidgetResult
         console.log('result', result);
-        window.Telegram.WebApp.close();
+        await window.Telegram.WebApp.close();
       });
   };
   handleCheckout();
