@@ -48,6 +48,7 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
+      window.Telegram.WebApp.close();
     };
 
     const receipt = {
@@ -134,6 +135,7 @@ const HomePage = () => {
       .then((result) => {
         // Объект типа WidgetResult
         console.log('result', result);
+        window.Telegram.WebApp.close();
       });
   };
   handleCheckout();
