@@ -53,8 +53,8 @@ const HomePage = () => {
     const receipt = {
       Type: 'Income', // обязательное поле
       Inn: process.env.REACT_APP_INN, // обязательное поле
-      InvoiceId: parseInt(InvoiceId, 10), // необязательное поле
-      AccountId: parseInt(AccountId, 10), // необязательное поле
+      InvoiceId: InvoiceId, // необязательное поле
+      AccountId: AccountId, // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
         //товарные позиции
@@ -128,7 +128,7 @@ const HomePage = () => {
         description: label,
         amount: parseInt(price, 10),
         currency: 'UZS',
-        InvoiceId: parseInt(InvoiceId, 10),
+        InvoiceId: InvoiceId,
         data: data,
       })
       .then(async (result) => {
