@@ -29,7 +29,7 @@ const HomePage = () => {
     const invoiceId = queryParams.get('invoiceid');
     const Type = queryParams.get('Type');
     const Inn = queryParams.get('Inn');
-    const username = queryParams.get('AccountId');
+    const username = queryParams.get('name');
     const InvoiceId = queryParams.get('InvoiceId');
     const AccountId = queryParams.get('AccountId');
     const Region = queryParams.get('Uzbekistan');
@@ -54,7 +54,7 @@ const HomePage = () => {
       Type: 'Income', // обязательное поле
       Inn: process.env.REACT_APP_INN, // обязательное поле
       InvoiceId: parseInt(InvoiceId, 10), // необязательное поле
-      AccountId: parseInt(id, 10), // необязательное поле
+      AccountId: parseInt(AccountId, 10), // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
         //товарные позиции
