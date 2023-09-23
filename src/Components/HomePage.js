@@ -53,7 +53,7 @@ const HomePage = () => {
     const receipt = {
       Type: 'Income', // обязательное поле
       Inn: '41509926490018', // обязательное поле
-      InvoiceId: InvoiceId || 222, // необязательное поле
+      InvoiceId: parseInt(InvoiceId, 10), // необязательное поле
       AccountId: username, // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
       Items: [
@@ -128,7 +128,7 @@ const HomePage = () => {
         description: label,
         amount: parseInt(price, 10),
         currency: 'UZS',
-        InvoiceId: parseInt(invoiceId, 10),
+        InvoiceId: parseInt(InvoiceId, 10),
         data: data,
       })
       .then(async (result) => {
