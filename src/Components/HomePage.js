@@ -124,7 +124,7 @@ const HomePage = () => {
     payments
       .pay('charge', {
         // options
-        publicId: 'pk_8999303510a1a4b9bcb104ed7504e', //'pk_da8fe04edb10f78e6d7602f6a687d',
+        publicId: process.env.REACT_APP_PUBLIC_ID_TEST,
         description: label,
         amount: parseInt(price, 10),
         currency: 'UZS',
