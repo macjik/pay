@@ -52,7 +52,7 @@ const HomePage = () => {
     };
     const receipt = {
       Type: 'Income', // обязательное поле
-      Inn: '41509926490018', // обязательное поле
+      Inn: process.env.REACT_APP_INN, // обязательное поле
       InvoiceId: parseInt(InvoiceId, 10), // необязательное поле
       AccountId: parseInt(id, 10), // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
@@ -68,7 +68,7 @@ const HomePage = () => {
           object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
           // measurementUnit: 'шт', //единица измерения
           packageCode: packageCode,
-          spic: '10602999999000000',
+          spic: process.env.REACT_APP_IKPU,
         },
         // {
         //   label: 'Наименование товара 3', //наименование товара
