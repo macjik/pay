@@ -22,7 +22,7 @@ const HomePage = () => {
   // ]);
   // }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
   const handleCheckout = async () => {
     const description = queryParams.get('description');
     const amount = queryParams.get('amount');
@@ -134,11 +134,11 @@ const HomePage = () => {
       .then(async (result) => {
         // Объект типа WidgetResult
         console.log('result', result);
-        await window.Telegram.WebApp.close();
+        // await window.Telegram.WebApp.close();
       });
   };
   handleCheckout();
-
+  })
   //   //   const recieveRequest = async () => {
   //   //     try {
   //   //       const response = await axios.post('http://localhost:3010/pay');
