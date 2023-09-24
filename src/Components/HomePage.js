@@ -48,7 +48,7 @@ const HomePage = () => {
 
     payments.oncomplete = async (result) => {
       console.log('result', result);
-      await window.Telegram.WebApp.close();
+      // await window.Telegram.WebApp.close();
     };
     const receipt = {
       Type: 'Income', // обязательное поле
