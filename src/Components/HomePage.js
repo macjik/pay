@@ -22,7 +22,7 @@ const HomePage = () => {
   // ]);
   // }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
     const handleCheckout = async () => {
       const description = queryParams.get('description');
       const amount = queryParams.get('amount');
@@ -137,7 +137,7 @@ const HomePage = () => {
         });
     };
     handleCheckout();
-  });
+  // });
   //   //   const recieveRequest = async () => {
   //   //     try {
   //   //       const response = await axios.post('http://localhost:3010/pay');
