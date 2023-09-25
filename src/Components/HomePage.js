@@ -46,7 +46,7 @@ const HomePage = () => {
       // https://developers.cloudpayments.uz/#ustanovka-vidzheta
       const payments = new window.cp.CloudPayments({});
 
-      payments.oncomplete = async (result) => {
+       payments.oncomplete = async (result) => {
         console.log('result', result);
         // await window.Telegram.WebApp.close();
       };
