@@ -46,7 +46,7 @@ const HomePage = () => {
       // https://developers.cloudpayments.uz/#ustanovka-vidzheta
       const payments = new window.cp.CloudPayments({});
 
-       payments.oncomplete = async (result) => {
+      payments.oncomplete = async (result) => {
         console.log('result', result);
         // await window.Telegram.WebApp.close();
       };
@@ -60,15 +60,15 @@ const HomePage = () => {
           //товарные позиции
           {
             label: label, //наименование товара
-            price: price, //цена
-            quantity: 1.0, //количество
-            amount: price, //сумма
+            price: parseInt(price, 10), //цена
+            quantity: 1, //количество
+            amount: parseInt(price, 10), //сумма
             vat: null, //ставка НДС
             method: 0, // тег-1214 признак способа расчета - признак способа расчета
             object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
             measurementUnit: 'шт', //единица измерения
-            packageCode: packageCode,
             spic: process.env.REACT_APP_IKPU,
+            packageCode: packageCode,
 
             // {
             //   label: 'Наименование товара 3', //наименование товара
