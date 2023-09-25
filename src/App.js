@@ -31,6 +31,7 @@ const telegramBot = window.Telegram.WebApp;
 
 function App() {
   useEffect(() => {
+<<<<<<< HEAD
     // console.log(telegramBot.version);
     // console.log(telegramBot.initData);
     // console.log(telegramBot.query_id);
@@ -50,6 +51,22 @@ function App() {
     //   // username,
     //   // telegramBot,
     // ]);
+=======
+    console.log(telegramBot.version);
+    console.log(telegramBot.initData);
+    console.log(telegramBot.query_id);
+    console.log(telegramBot);
+    telegramBot.sendData([
+      JSON.stringify({ data: "From web app" }),
+      telegramBot.version,
+      telegramBot.initData,
+      telegramBot.query_id,
+      telegramBot.WebAppUser,
+      telegramBot.WebAppInitData,
+      telegramBot.KeyboardButton,
+      telegramBot,
+    ]);
+>>>>>>> 1e6e6f9 (passing a string)
     telegramBot.ready();
   }, []);
 
