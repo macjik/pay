@@ -42,6 +42,7 @@ const HomePage = () => {
     const calculationPlace = queryParams.get('calculationPlace');
     const phone = queryParams.get('phone');
     const AgentSign = queryParams.get('AgentSign');
+    const language = queryParams.get('language');
 
     // https://developers.cloudpayments.uz/#ustanovka-vidzheta
     const payments = new window.cp.CloudPayments({});
@@ -73,6 +74,7 @@ const HomePage = () => {
           measurementUnit: 'шт', //единица измерения
           spic: process.env.REACT_APP_IKPU,
           packageCode: packageCode,
+          language: language,
 
           // {
           //   label: 'Наименование товара 3', //наименование товара
@@ -102,7 +104,7 @@ const HomePage = () => {
           },
         },
       ],
-      calculationPlace: 'https://firuzaikram.uz/rod', //место осуществления расчёта, по умолчанию берется значение из кассы
+      calculationPlace: 'https://firuzaikram.uz/', //место осуществления расчёта, по умолчанию берется значение из кассы
       taxationSystem: 0, //система налогообложения; необязательный, если у вас одна система налогообложения
       email: 'mcjik@icloud.com', //e-mail покупателя, если нужно отправить письмо с чеком
       phone: phone, //телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек
