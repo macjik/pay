@@ -43,6 +43,10 @@ const HomePage = () => {
     const phone = queryParams.get('phone');
     const AgentSign = queryParams.get('AgentSign');
     const language = queryParams.get('language');
+    const inn = queryParams.get('INN');
+    const ikpu = queryParams.get('IKPU');
+    const s = queryParams.get('s');
+    const pid = queryParams.get('PID');
 
     // https://developers.cloudpayments.uz/#ustanovka-vidzheta
     const payments = new window.cp.CloudPayments({});
@@ -57,7 +61,7 @@ const HomePage = () => {
     };
     const receipt = {
       Type: 'Income', // обязательное поле
-      Inn: process.env.REACT_APP_INN, // обязательное поле
+      Inn: inn, // обязательное поле
       InvoiceId: InvoiceId, // необязательное поле
       AccountId: AccountId, // необязательное поле
       Region: 'Uzbekistan', // обязательное поле
@@ -72,7 +76,7 @@ const HomePage = () => {
           method: 0, // тег-1214 признак способа расчета - признак способа расчета
           object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
           measurementUnit: 'шт', //единица измерения
-          spic: process.env.REACT_APP_IKPU,
+          spic: ikpu,
           packageCode: packageCode,
           language: language,
 
@@ -129,7 +133,7 @@ const HomePage = () => {
     payments
       .pay('charge', {
         // options
-        publicId: process.env.REACT_APP_PUBLIC_ID,
+        publicId: pid,
         description: label,
         amount: parseInt(price, 10),
         currency: 'UZS',
